@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { NavLink } from 'react-router-dom';
 import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
 import { connect } from 'react-redux';
@@ -23,6 +24,14 @@ const schemaLogin = Yup.object().shape({
 const MessageWrapper = styled.div`
   position: absolute;
   bottom: 0rem;
+`;
+
+const ForgotWrapper = styled.div`
+  margin-top: 2rem;
+`;
+
+const StyledNavLink = styled(NavLink)`
+  color: var(--color-white);
 `;
 
 const Login = ({ loading, error, login, cleanUp }) => {
@@ -76,6 +85,13 @@ const Login = ({ loading, error, login, cleanUp }) => {
                 {error}
               </Message>
             </MessageWrapper>
+            <ForgotWrapper>
+              <Heading size='h4' fontWeight={`true`} color='white' noMargin>
+                <StyledNavLink to='/recover'>
+                  Forgot your password?
+                </StyledNavLink>
+              </Heading>
+            </ForgotWrapper>
           </StyledForm>
         </FormWrapper>
       )}

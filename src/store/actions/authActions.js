@@ -3,7 +3,7 @@ import * as actionTypes from './actionTypes';
 //signUp actions
 export const signUp = data => async (
   dispatch,
-  getState,
+  _,
   { getFirebase, getFirestore },
 ) => {
   const firebase = getFirebase();
@@ -33,7 +33,7 @@ export const signUp = data => async (
 };
 
 //logOut actions
-export const logOut = () => async (dispatch, getState, { getFirebase }) => {
+export const logOut = () => async (dispatch, _, { getFirebase }) => {
   const firebase = getFirebase();
   try {
     await firebase.auth().signOut();
@@ -43,7 +43,7 @@ export const logOut = () => async (dispatch, getState, { getFirebase }) => {
 };
 
 //logIn actions
-export const logIn = data => async (dispatch, getState, { getFirebase }) => {
+export const logIn = data => async (dispatch, _, { getFirebase }) => {
   const firebase = getFirebase();
   dispatch({ type: actionTypes.AUTH_START });
   try {
@@ -59,11 +59,7 @@ export const logIn = data => async (dispatch, getState, { getFirebase }) => {
 export const cleanUp = () => ({ type: actionTypes.CLEAN_UP });
 
 //verifyEmail actions
-export const verifyEmail = data => async (
-  dispatch,
-  getState,
-  { getFirebase },
-) => {
+export const verifyEmail = data => async (dispatch, _, { getFirebase }) => {
   const firebase = getFirebase();
   dispatch({ type: actionTypes.VERIFY_START });
   try {
@@ -77,11 +73,7 @@ export const verifyEmail = data => async (
 };
 
 //recoverPassword actions
-export const recoverPassword = data => async (
-  dispatch,
-  getState,
-  { getFirebase },
-) => {
+export const recoverPassword = data => async (dispatch, _, { getFirebase }) => {
   const firebase = getFirebase();
   dispatch({ type: actionTypes.RECOVER_START });
   try {
@@ -91,4 +83,39 @@ export const recoverPassword = data => async (
     dispatch({ type: actionTypes.RECOVER_FAIL, payload: err.message });
   }
   dispatch({ type: actionTypes.RECOVER_END });
+};
+
+//editProfile actions
+export const editProfile = data => async (
+  dispatch,
+  getState,
+  { getFirebase, getFirestore },
+) => {
+  const firebase = getFirebase();
+  const firestore = getFirestore();
+  const user = firebase.auth().currentUser;
+  const { uid: userId, email: userEmail } = getState().firebase.auth;
+  dispatch({ type: actionTypes.EDIT_START });
+
+  try {
+    if (userEmail !== data.email) {
+      await user.updateEmail(data.email);
+    }
+
+    await firestore
+      .collection('users')
+      .doc(userId)
+      .set({
+        firstName: data.firstName,
+        lastName: data.lastName,
+      });
+
+    if (data.password.length > 0) {
+      await user.updatePassword(data.password);
+    }
+    dispatch({ type: actionTypes.EDIT_SUCCESS });
+  } catch (err) {
+    dispatch({ type: actionTypes.EDIT_FAIL, payload: err.message });
+  }
+  dispatch({ type: actionTypes.EDIT_END });
 };

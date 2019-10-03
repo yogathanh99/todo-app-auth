@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
+
 import NavItem from './NavItem';
 
 const Nav = styled.nav`
@@ -14,42 +16,50 @@ const Ul = styled.ul`
   height: 100%;
 `;
 
-const NavItems = ({ mobile, clicked, loggedIn }) => {
+const HeadWrapper = styled.h4`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-white);
+  font-size: 1.2rem;
+`;
+
+const NavItems = ({ mobile, clicked, loggedIn, firebase }) => {
   let links;
   if (loggedIn) {
     links = (
-      <>
-        <NavItem clicked={clicked} mobile={mobile} link='/'>
-          Home
-        </NavItem>
+      <Ul mobile={mobile}>
+        <HeadWrapper>
+          {firebase.profile.firstName} {firebase.profile.lastName}
+        </HeadWrapper>
         <NavItem clicked={clicked} mobile={mobile} link='/todos'>
           Todos
+        </NavItem>
+        <NavItem clicked={clicked} mobile={mobile} link='/profile'>
+          Profile
         </NavItem>
         <NavItem clicked={clicked} mobile={mobile} link='/logout'>
           Logout
         </NavItem>
-      </>
+      </Ul>
     );
   } else {
     links = (
-      <>
+      <Ul mobile={mobile}>
         <NavItem clicked={clicked} mobile={mobile} link='/login'>
           Login
         </NavItem>
         <NavItem clicked={clicked} mobile={mobile} link='/signup'>
           Sign Up
         </NavItem>
-        <NavItem clicked={clicked} mobile={mobile} link='/recover'>
-          Recover Password
-        </NavItem>
-      </>
+      </Ul>
     );
   }
-  return (
-    <Nav>
-      <Ul mobile={mobile}>{links}</Ul>
-    </Nav>
-  );
+  return <Nav mobile={mobile}>{links}</Nav>;
 };
 
-export default NavItems;
+const mapStateToProps = state => ({
+  firebase: state.firebase,
+});
+
+export default connect(mapStateToProps)(NavItems);

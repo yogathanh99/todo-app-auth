@@ -8,6 +8,7 @@ import Todos from './routes/Todos';
 import Login from './routes/Auth/Login';
 import SignUp from './routes/Auth/SignUp';
 import LogOut from './routes/Auth/LogOut';
+import Profile from './routes/Auth/Profile';
 import RecoverPassword from './routes/Auth/RecoverPassword';
 import VerifyEmail from './routes/Auth/VerifyEmail';
 
@@ -26,8 +27,9 @@ const App = ({ loggedIn, emailVerified }) => {
       <Switch>
         <Route exact path='/' component={Home} />
         <Route exact path='/todos' component={Todos} />
+        <Route exact path='/profile' component={Profile} />
         <Route exact path='/logout' component={LogOut} />
-        <Redirect to='/' />
+        <Redirect to='/todos' />
       </Switch>
     );
   } else {
