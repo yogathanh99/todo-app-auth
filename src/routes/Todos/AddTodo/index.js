@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
 import styled from 'styled-components';
@@ -7,6 +8,8 @@ import { StyledForm } from '../../../hoc/container';
 import Input from '../../../components/UI/Form/Input';
 import Button from '../../../components/UI/Form/Button';
 import Message from '../../../components/UI/Message';
+
+import * as actions from '../../../store/actions';
 
 const schemaTodo = Yup.object().shape({
   todo: Yup.string().required('Todo is required!'),
@@ -17,7 +20,7 @@ const MessageWrapper = styled.div`
   bottom: -1rem;
 `;
 
-const AddTodo = () => {
+const AddTodo = ({ loading, error, addTodo }) => {
   return (
     <Formik
       initialValues={{
@@ -25,7 +28,7 @@ const AddTodo = () => {
       }}
       validationSchema={schemaTodo}
       onSubmit={async (value, { setSubmitting }) => {
-        // await login(value);
+        await addTodo(value);
         setSubmitting(false);
       }}
     >
@@ -40,19 +43,31 @@ const AddTodo = () => {
           <Button
             disabled={!isValid || isSubmitting}
             type='submit'
-            // loading={loading ? 'Adding...' : null}
+            loading={loading ? 'Adding...' : null}
           >
             Add todo
           </Button>
-          {/* <MessageWrapper>
+          <MessageWrapper>
             <Message error show={error}>
               {error}
             </Message>
-          </MessageWrapper> */}
+          </MessageWrapper>
         </StyledForm>
       )}
     </Formik>
   );
 };
 
-export default AddTodo;
+const mapStateToProps = state => ({
+  loading: state.todos.loading,
+  error: state.todos.error,
+});
+
+const mapDispatchToProps = {
+  addTodo: actions.addTodo,
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(AddTodo);
