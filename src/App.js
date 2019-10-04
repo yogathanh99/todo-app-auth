@@ -29,7 +29,7 @@ const App = ({ loggedIn, emailVerified }) => {
         <Route exact path='/todos' component={Todos} />
         <Route exact path='/profile' component={Profile} />
         <Route exact path='/logout' component={LogOut} />
-        <Redirect to='/todos' />
+        <Redirect to='/' />
       </Switch>
     );
   } else {

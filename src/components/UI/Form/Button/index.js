@@ -10,7 +10,11 @@ const StyledButton = styled.button`
   color: var(--color-white);
   font-weight: 700;
   box-shadow: 0rem 0.5rem 3.5rem var(--shadow);
-  background-color: var(--color-mainLighter);
+  background-color: ${({ color }) => {
+    if (color === 'red') return 'var(--color-error)';
+    else if (color === 'main') return 'var(--color-mainDark)';
+    else return 'var(--color-mainLighter)';
+  }};
   border: none;
   transition: all 0.2s;
 
@@ -28,9 +32,9 @@ const StyledButton = styled.button`
   }
 `;
 
-const Button = ({ children, disabled, loading, ...rest }) => {
+const Button = ({ children, disabled, loading, color, ...rest }) => {
   return (
-    <StyledButton disabled={disabled} {...rest}>
+    <StyledButton disabled={disabled} {...rest} color={color}>
       {loading ? loading : children}
     </StyledButton>
   );

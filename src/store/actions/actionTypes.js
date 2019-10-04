@@ -4,6 +4,7 @@ export const AUTH_FAIL = 'AUTH_FAIL';
 export const AUTH_SUCCESS = 'AUTH_SUCCESS';
 
 export const CLEAN_UP = 'CLEAN_UP';
+export const CLEAN_UP_TODOS = 'CLEAN_UP_TODOS';
 
 export const VERIFY_START = 'VERIFY_START';
 export const VERIFY_END = 'VERIFY_END';
@@ -21,6 +22,9 @@ export const EDIT_SUCCESS = 'EDIT_SUCCESS';
 export const EDIT_FAIL = 'EDIT_FAIL';
 
 export const ADD_TODO_START = 'ADD_TODO_START';
-export const ADD_TODO_END = 'ADD_TODO_END';
 export const ADD_TODO_SUCCESS = 'ADD_TODO_SUCCESS';
 export const ADD_TODO_FAIL = 'ADD_TODO_FAIL';
+
+export const DELETE_TODO_START = 'DELETE_TODO_START';
+export const DELETE_TODO_SUCCESS = 'DELETE_TODO_SUCCESS';
+export const DELETE_TODO_FAIL = 'DELETE_TODO_FAIL';

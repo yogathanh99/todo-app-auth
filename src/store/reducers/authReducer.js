@@ -208,7 +208,7 @@ export default (state = initState, action) => {
       return recoverFail(state, action.payload);
 
     case actionTypes.RECOVER_END:
-      return recoverSuccess(state);
+      return recoverEnd(state);
 
     case actionTypes.EDIT_START:
       return editStart(state);
