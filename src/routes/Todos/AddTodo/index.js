@@ -41,6 +41,7 @@ const AddTodo = ({ loading, error, addTodo }) => {
             component={Input}
           />
           <Button
+            color='green'
             disabled={!isValid || isSubmitting}
             type='submit'
             loading={loading ? 'Adding...' : null}

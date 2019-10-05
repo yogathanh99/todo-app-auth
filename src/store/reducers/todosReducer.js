@@ -7,6 +7,10 @@ const initState = {
     error: null,
     loading: null,
   },
+  editTodo: {
+    error: null,
+    loading: false,
+  },
 };
 
 const addStart = state => {
@@ -42,7 +46,23 @@ const cleanUpTodos = state => {
     error: null,
     loading: false,
     deleteTodo: { ...state.deleteTodo, error: null, loading: false },
+    editTodo: { ...state.editTodo, error: null, loading: false },
   };
+};
+
+const editTodoStart = state => {
+  return { ...state, editTodo: { ...state.editTodo, loading: true } };
+};
+
+const editTodoSucess = state => {
+  return {
+    ...state,
+    editTodo: { ...state.editTodo, error: false, loading: false },
+  };
+};
+
+const editTodoFail = (state, payload) => {
+  return { ...state, editTodo: { ...state.editTodo, error: payload } };
 };
 
 export default (state = initState, action) => {
@@ -67,6 +87,15 @@ export default (state = initState, action) => {
 
     case actionTypes.CLEAN_UP_TODOS:
       return cleanUpTodos(state);
+
+    case actionTypes.EDIT_TODO_START:
+      return editTodoStart(state);
+
+    case actionTypes.EDIT_TODO_SUCCESS:
+      return editTodoSucess(state);
+
+    case actionTypes.EDIT_TODO_FAIL:
+      return editTodoFail(state, action.payload);
 
     default:
       return state;

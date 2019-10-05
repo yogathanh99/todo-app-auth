@@ -37,6 +37,8 @@ export const addTodo = data => async (dispatch, getState, { getFirestore }) => {
   }
 };
 
+export const cleanUpTodos = () => ({ type: actionTypes.CLEAN_UP_TODOS });
+
 export const deleteTodo = (id, data) => async (
   dispatch,
   getState,
@@ -67,4 +69,32 @@ export const deleteTodo = (id, data) => async (
   }
 };
 
-export const cleanUpTodos = () => ({ type: actionTypes.CLEAN_UP_TODOS });
+export const editTodo = (id, data) => async (
+  dispatch,
+  getState,
+  { getFirestore },
+) => {
+  const firestore = getFirestore();
+  const userId = getState().firebase.auth.uid;
+  dispatch({ type: actionTypes.EDIT_TODO_START });
+
+  try {
+    const res = await firestore
+      .collection('todos')
+      .doc(userId)
+      .get();
+    const todos = res.data().todos;
+    const indexTodo = todos.findIndex(todo => todo.id === id);
+
+    todos[indexTodo].todo = data.todo;
+
+    await firestore
+      .collection('todos')
+      .doc(userId)
+      .update({ todos });
+    dispatch({ type: actionTypes.EDIT_TODO_SUCCESS });
+    return true;
+  } catch (err) {
+    dispatch({ type: actionTypes.EDIT_TODO_FAIL, payload: err.message });
+  }
+};

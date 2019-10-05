@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import Heading from '../../../components/UI/Form/Heading';
 import DeleteTodo from './DeleteTodo';
+import EditTodo from '../EditTodo';
 
 const Wrapper = styled.div`
   width: 80%;
@@ -26,7 +27,7 @@ const Controls = styled.div`
 `;
 
 const editStyles = {
-  color: 'var(--color-main)',
+  color: 'var(--color-edit)',
   margin: '0 .5rem',
   cursor: 'pointer',
 };
@@ -61,6 +62,11 @@ const Todo = ({ todo }) => {
           show={isDeleting}
           close={() => setisDeleting(false)}
           todo={todo}
+        />
+        <EditTodo
+          todo={todo}
+          opened={isEditing}
+          close={() => setIsEditing(false)}
         />
       </Controls>
     </Wrapper>

@@ -25,6 +25,8 @@ export default createGlobalStyle`
     --color-text: ${props => props.theme.colors.textColor};
     --color-white: ${props => props.theme.colors.whiteColor};
     --color-error: ${props => props.theme.colors.errorRed};
+    --color-submit: ${props => props.theme.colors.submitGreen};
+    --color-edit: ${props => props.theme.colors.editBlue};
     --shadow: ${props => props.theme.colors.shadow};
     
     @media ${props => props.theme.mediaQueries.small} {

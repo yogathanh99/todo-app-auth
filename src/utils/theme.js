@@ -7,6 +7,8 @@ const theme = {
     textColor: '#333',
     whiteColor: '#fff',
     errorRed: '#E84656',
+    submitGreen: '#00b894',
+    editBlue: '#202040',
     shadow: 'rgba(0,0,0,.2)',
   },
 

@@ -41,6 +41,7 @@ const Todos = ({ cleanUp, todos, userId, requested, requesting }) => {
       cleanUp();
     };
   }, [cleanUp]);
+
   let content;
 
   if (!todos) {
@@ -49,7 +50,10 @@ const Todos = ({ cleanUp, todos, userId, requested, requesting }) => {
         <Loading />
       </Content>
     );
-  } else if (!todos[userId] && requested[`todos/${userId}`]) {
+  } else if (
+    (!todos[userId] && requested[`todos/${userId}`]) ||
+    todos[userId].todos.length === 0
+  ) {
     content = (
       <Content>
         <Heading size='h2'>You have not todos</Heading>

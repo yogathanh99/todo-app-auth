@@ -12,6 +12,7 @@ const StyledButton = styled.button`
   box-shadow: 0rem 0.5rem 3.5rem var(--shadow);
   background-color: ${({ color }) => {
     if (color === 'red') return 'var(--color-error)';
+    else if (color === 'green') return 'var(--color-submit)';
     else if (color === 'main') return 'var(--color-mainDark)';
     else return 'var(--color-mainLighter)';
   }};
