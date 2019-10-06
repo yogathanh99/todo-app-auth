@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const P = styled.p`
   font-weight: 7000;
@@ -21,6 +22,13 @@ const Message = ({ children, error, show, success }) => {
       {children}
     </P>
   );
+};
+
+Message.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  error: PropTypes.bool,
+  show: PropTypes.bool,
+  success: PropTypes.bool,
 };
 
 export default Message;

@@ -5,6 +5,7 @@ import * as Yup from 'yup';
 import { connect } from 'react-redux';
 import * as actions from '../../../store/actions';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import { FormWrapper, StyledForm } from '../../../hoc/container';
 import Input from '../../../components/UI/Form/Input';
@@ -97,6 +98,13 @@ const Login = ({ loading, error, login, cleanUp }) => {
       )}
     </Formik>
   );
+};
+
+Login.propTypes = {
+  loading: PropTypes.bool.isRequired,
+  error: PropTypes.bool,
+  login: PropTypes.func.isRequired,
+  cleanUp: PropTypes.func,
 };
 
 const mapStateToProps = state => ({

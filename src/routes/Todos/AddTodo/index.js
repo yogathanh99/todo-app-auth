@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import { StyledForm } from '../../../hoc/container';
 import Input from '../../../components/UI/Form/Input';
@@ -57,6 +58,12 @@ const AddTodo = ({ loading, error, addTodo }) => {
       )}
     </Formik>
   );
+};
+
+AddTodo.propTypes = {
+  loading: PropTypes.bool.isRequired,
+  error: PropTypes.bool,
+  addTodo: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

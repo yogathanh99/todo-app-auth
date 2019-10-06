@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Wrapper = styled.div`
   width: 30px;
@@ -57,6 +58,11 @@ const HamburgerMenu = ({ clicked, opened }) => {
       <span></span>
     </Wrapper>
   );
+};
+
+HamburgerMenu.propTypes = {
+  clicked: PropTypes.func.isRequired,
+  opened: PropTypes.bool.isRequired,
 };
 
 export default HamburgerMenu;

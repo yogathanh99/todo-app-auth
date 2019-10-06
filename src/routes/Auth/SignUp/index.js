@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Formik, Field } from 'formik';
 import styled from 'styled-components';
 import * as Yup from 'yup';
+import PropTypes from 'prop-types';
 
 import { FormWrapper, StyledForm } from '../../../hoc/container';
 import Input from '../../../components/UI/Form/Input';
@@ -114,6 +115,14 @@ const SignUp = ({ signUp, loading, error, cleanUp }) => {
     </Formik>
   );
 };
+
+SignUp.propTypes = {
+  loading: PropTypes.bool.isRequired,
+  error: PropTypes.bool,
+  signUp: PropTypes.func.isRequired,
+  cleanUp: PropTypes.func,
+};
+
 const mapStateToProps = state => ({
   loading: state.auth.loading,
   error: state.auth.error,

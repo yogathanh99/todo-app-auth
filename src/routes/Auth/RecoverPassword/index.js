@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import { FormWrapper, StyledForm } from '../../../hoc/container';
 import Input from '../../../components/UI/Form/Input';
@@ -76,6 +77,13 @@ const RecoverPassword = ({ loading, error, cleanUp, sendEmail }) => {
       )}
     </Formik>
   );
+};
+
+RecoverPassword.propTypes = {
+  loading: PropTypes.bool.isRequired,
+  error: PropTypes.bool,
+  sendEmail: PropTypes.func.isRequired,
+  cleanUp: PropTypes.func,
 };
 
 const mapStateToProps = state => ({

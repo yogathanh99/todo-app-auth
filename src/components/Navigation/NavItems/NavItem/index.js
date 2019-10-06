@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const Li = styled.li`
   display: flex;
@@ -48,6 +49,12 @@ const NavItem = ({ link, children, mobile, clicked }) => {
       </NavLinkStyle>
     </Li>
   );
+};
+
+NavItem.propTypes = {
+  link: PropTypes.string.isRequired,
+  children: PropTypes.string.isRequired,
+  mobile: PropTypes.bool,
 };
 
 export default NavItem;

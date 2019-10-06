@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
+import PropTypes from 'prop-types';
 
 import { Container } from '../../hoc/container';
 import Heading from '../../components/UI/Form/Heading';
@@ -35,7 +36,7 @@ const Content = styled.div`
   margin-top: 2.5rem;
 `;
 
-const Todos = ({ cleanUp, todos, userId, requested, requesting }) => {
+const Todos = ({ cleanUp, todos, userId, requested }) => {
   useEffect(() => {
     return () => {
       cleanUp();
@@ -87,10 +88,15 @@ const Todos = ({ cleanUp, todos, userId, requested, requesting }) => {
   );
 };
 
+Todos.propTypes = {
+  userId: PropTypes.string,
+  todos: PropTypes.object,
+  requested: PropTypes.object,
+};
+
 const mapStateToProps = state => ({
   userId: state.firebase.auth.uid,
   todos: state.firestore.data.todos,
-  requesting: state.firestore.status.requesting,
   requested: state.firestore.status.requested,
 });
 

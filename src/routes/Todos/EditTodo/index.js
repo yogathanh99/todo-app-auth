@@ -3,6 +3,7 @@ import { Formik, Field } from 'formik';
 import { connect } from 'react-redux';
 import * as Yup from 'yup';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import Button from '../../../components/UI/Form/Button';
 import Heading from '../../../components/UI/Form/Heading';
@@ -108,6 +109,13 @@ const EditTodo = ({
       </Formik>
     </Modal>
   );
+};
+
+EditTodo.propTypes = {
+  loading: PropTypes.bool.isRequired,
+  error: PropTypes.bool,
+  editTodo: PropTypes.func.isRequired,
+  cleanUp: PropTypes.func,
 };
 
 const mapStateToProps = state => ({

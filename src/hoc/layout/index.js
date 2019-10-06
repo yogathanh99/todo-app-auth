@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import NavBar from '../../components/Navigation/Navbar';
 import SideDrawer from '../../components/Navigation/SideDrawer';
@@ -22,6 +23,11 @@ const Layout = ({ children, loggedIn }) => {
       <MainWrapper>{children}</MainWrapper>
     </>
   );
+};
+
+Layout.propTypes = {
+  children: PropTypes.element.isRequired,
+  loggedIn: PropTypes.string,
 };
 
 const mapStateToProps = ({ firebase }) => ({

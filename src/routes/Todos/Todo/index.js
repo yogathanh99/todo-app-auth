@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import Heading from '../../../components/UI/Form/Heading';
 import DeleteTodo from './DeleteTodo';
@@ -71,6 +72,10 @@ const Todo = ({ todo }) => {
       </Controls>
     </Wrapper>
   );
+};
+
+Todo.propTypes = {
+  todo: PropTypes.object.isRequired,
 };
 
 export default Todo;

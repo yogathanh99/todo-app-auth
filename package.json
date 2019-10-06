@@ -5,6 +5,7 @@
   "dependencies": {
     "firebase": "^7.0.0",
     "formik": "^1.5.8",
+    "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-redux": "^5.1.1",

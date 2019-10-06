@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import Modal from '../../../../components/UI/Modal';
 import Button from '../../../../components/UI/Form/Button';
@@ -59,6 +60,12 @@ const DeleteTodo = ({ show, todo, close, loading, error, deleteTodo }) => {
       </MessageWrapper>
     </Modal>
   );
+};
+
+DeleteTodo.propTypes = {
+  loading: PropTypes.bool,
+  error: PropTypes.bool,
+  deleteTodo: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

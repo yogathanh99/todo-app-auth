@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
+import PropTypes from 'prop-types';
 
 const baseStyle = css`
   color: ${({ color }) =>
@@ -55,6 +56,15 @@ const Heading = ({ children, noMargin, size, color, fontWeight }) => {
         {children}
       </Heading4>
     );
+};
+
+Heading.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+    .isRequired,
+  size: PropTypes.string.isRequired,
+  noMargin: PropTypes.bool,
+  color: PropTypes.string,
+  fontWeight: PropTypes.string,
 };
 
 export default Heading;

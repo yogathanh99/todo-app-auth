@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import Backdrop from './Backdrop';
 
@@ -45,6 +46,12 @@ const Modal = ({ opened, close, children }) => {
     </>,
     document.getElementById('root-modal'),
   );
+};
+
+Modal.propTypes = {
+  opened: PropTypes.bool,
+  close: PropTypes.func,
+  children: PropTypes.array.isRequired,
 };
 
 export default Modal;

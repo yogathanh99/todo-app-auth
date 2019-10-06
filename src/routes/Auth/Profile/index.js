@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import { FormWrapper, StyledForm } from '../../../hoc/container';
 import Message from '../../../components/UI/Message';
@@ -122,6 +123,14 @@ const Profile = ({ firebase, loading, error, cleanUp, editProfile }) => {
       )}
     </Formik>
   );
+};
+
+Profile.propTypes = {
+  firebase: PropTypes.object.isRequired,
+  loading: PropTypes.bool.isRequired,
+  error: PropTypes.bool,
+  cleanUp: PropTypes.func,
+  editProfile: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

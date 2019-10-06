@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import NavItem from './NavItem';
 
@@ -56,6 +57,12 @@ const NavItems = ({ mobile, clicked, loggedIn, firebase }) => {
     );
   }
   return <Nav mobile={mobile}>{links}</Nav>;
+};
+
+NavItems.propTypes = {
+  clicked: PropTypes.func,
+  mobile: PropTypes.bool,
+  firebase: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({

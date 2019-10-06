@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import Logo from '../../Logo';
 import { Container } from '../../../hoc/container';
@@ -36,6 +37,10 @@ const Navbar = ({ loggedIn }) => {
       </Container>
     </FixedWrapper>
   );
+};
+
+Navbar.propTypes = {
+  loggedIn: PropTypes.string,
 };
 
 export default Navbar;

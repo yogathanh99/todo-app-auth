@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Wrapper = styled.div`
   position: fixed;
@@ -16,6 +17,11 @@ const Wrapper = styled.div`
 
 const Backdrop = ({ opened, close }) => {
   return <Wrapper onClick={close} opened={opened} />;
+};
+
+Backdrop.propTypes = {
+  opened: PropTypes.bool,
+  close: PropTypes.func,
 };
 
 export default Backdrop;

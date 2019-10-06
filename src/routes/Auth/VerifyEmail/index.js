@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 import { FormWrapper } from '../../../hoc/container';
 import Heading from '../../../components/UI/Form/Heading';
@@ -58,6 +59,13 @@ const VerifyEmail = ({ loading, error, reSendVerify, cleanUp }) => {
       </Wrapper>
     </FormWrapper>
   );
+};
+
+VerifyEmail.propTypes = {
+  loading: PropTypes.bool.isRequired,
+  error: PropTypes.bool,
+  reSendVerify: PropTypes.func.isRequired,
+  cleanUp: PropTypes.func,
 };
 
 const mapStateToProps = state => ({
